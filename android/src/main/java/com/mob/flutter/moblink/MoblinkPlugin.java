@@ -258,6 +258,10 @@ public class MoblinkPlugin extends Object implements FlutterPlugin,MethodCallHan
 
     @Override
     public void onReturnSceneData(Scene scene) {
+        MoblinkPlugin.onReturnSceneDataByOut(scene);
+    }
+    
+    public static void onReturnSceneDataByOut(Scene scene) {
         Log.e("MobLink", " onReturnSceneData==" + new Hashon().fromObject(scene));
         onReturnSceneDataMap = new HashMap<>();
         onReturnSceneDataMap.put("path", scene.getPath());
