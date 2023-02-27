@@ -277,6 +277,25 @@ public class MoblinkPlugin extends Object implements FlutterPlugin,MethodCallHan
         }
     }
 
+    public static Class<? extends Activity> willRestoreScene(Scene scene) {
+        Log.e("MobLink", " willRestoreScene==" + new Hashon().fromObject(scene));
+
+        onReturnSceneDataMap = new HashMap<>();
+        onReturnSceneDataMap.put("path", scene.getPath());
+        onReturnSceneDataMap.put("params", scene.getParams());
+
+        Log.e("MobLink", " willRestoreScene[onReturnSceneDataMap]==" + new Hashon().fromObject(onReturnSceneDataMap));
+
+        if (null != mEventSink) {
+            Log.e("MobLink", " willRestoreScene[onReturnSceneDataMap]==开始回调了传递数据了");
+            restoreScene();
+            ismEventSinkNotNull = false;
+        } else {
+            ismEventSinkNotNull = true;
+        }
+        return null;
+    }
+
     /* SceneListener */
     public static class SceneListener extends Object implements RestoreSceneListener {
         @Override
